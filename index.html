@@ -5,19 +5,48 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Code Quiz</title>
 
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+			integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+			crossorigin="anonymous"
+		/>
+
 		<link rel="stylesheet" href="./styles.css" />
 	</head>
 	<body>
 		<header>
-			<h3><a href="./highscores.html">View Highscores</a></h3>
-			<h3 id="clock-timer">Time:100</h3>
+			<nav class="navbar">
+				<h3><a href="./highscores.html">View Highscores</a></h3>
+				<h3 id="clock-timer">Time:100</h3>
+			</nav>
 		</header>
 
 		<main>
-			<h1>Coding Quiz Challenge</h1>
-			<p>Answer the questions.</p>
-			<button id="start-button">Start Quiz</button>
+			<div class="d-flex justify-content-center">
+				<div class="d-flex p-2 pt-5 flex-column">
+					<h1 class="p-4">Coding Quiz Challenge</h1>
+					<p class="p-4">Answer the questions.</p>
+					<button class="p-4" id="start-button">Start Quiz</button>
+				</div>
+			</div>
 		</main>
+		<!-- Bootstrap -->
+		<script
+			src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+			integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+			integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+			integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+			crossorigin="anonymous"
+		></script>
 		<!-- Added link to the jQuery library -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script src="./script.js"></script>

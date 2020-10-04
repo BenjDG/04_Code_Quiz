@@ -11,13 +11,8 @@ $('#start-button').on('click', function() {
 alert('click!');
 });
 
-//remove main items
+//quiz section
 
-//add first question and start timer
-
-//second question
-
-//third, fourth, etc.
 
 //All done! Your final score is:  Enter initials
 
