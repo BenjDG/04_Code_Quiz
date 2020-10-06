@@ -38,30 +38,42 @@ quizOption2.setAttribute('class', 'p-2');
 quizOption3.setAttribute('class', 'p-2');
 quizOption4.setAttribute('class', 'p-2');
 
-
-
-//Timer
-var timer = 100;
-
 //Score
 var score = 0;
+var timeLeft = 5;
+
+//Timer Function
+function timer() {
+    var timerInterval = setInterval(function() {
+        timeLeft--;
+        timeView.textContent = "Time: " + timeLeft;
+        
+        if(timeLeft === 0) {
+            clearInterval(timerInterval);
+            alert('game over');
+          }
+
+    },1000)
+};
+
+
 
 //question data bank
 var questionsArray = [
     {
-        question: "Which of the following is correct about features of JavaScript?",
+        question: "Which of the following is correct?",
         answers: [
             {
-                text: "JavaScript is a lightweight, interpreted programming language.",
+                text: "Dog",
                 correct: false,
             },
             {
                 text:
-                    "JavaScript is designed for creating network-centric applications.",
+                    "Cat",
                 correct: false,
             },
             {
-                text: "JavaScript is complementary to and integrated with Java.",
+                text: "Mouse",
                 correct: false,
             },
             {
@@ -71,19 +83,19 @@ var questionsArray = [
         ]
     },
     {
-        question: "Which of the following is correct about features of JavaScript?",
+        question: "Which of the following is correct?",
         answers: [
             {
-                text: "JavaScript is a lightweight, interpreted programming language.",
+                text: "Dog",
                 correct: false,
             },
             {
                 text:
-                    "JavaScript is designed for creating network-centric applications.",
+                    "Cat",
                 correct: false,
             },
             {
-                text: "JavaScript is complementary to and integrated with Java.",
+                text: "Mouse",
                 correct: false,
             },
             {
@@ -93,19 +105,19 @@ var questionsArray = [
         ]
     },
     {
-        question: "Which of the following is correct about features of JavaScript?",
+        question: "Which of the following is correct?",
         answers: [
             {
-                text: "JavaScript is a lightweight, interpreted programming language.",
+                text: "Dog",
                 correct: false,
             },
             {
                 text:
-                    "JavaScript is designed for creating network-centric applications.",
+                    "Cat",
                 correct: false,
             },
             {
-                text: "JavaScript is complementary to and integrated with Java.",
+                text: "Mouse",
                 correct: false,
             },
             {
@@ -158,7 +170,7 @@ function quiz() {
 
 //event listeners
 mainContentContainer.addEventListener('click', function () {
-    alert('click on main content');
+    //alert('click on main content');
 });
 
 
@@ -173,5 +185,6 @@ timeView.addEventListener('click', function () {
 startButton.addEventListener('click', function () {
     clearPage();
     quiz();
-    alert('click on startButton');
+    timer();
+    //alert('click on startButton');
 });
