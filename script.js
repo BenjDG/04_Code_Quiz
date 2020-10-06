@@ -33,27 +33,29 @@ questionSection.appendChild(quizOption4);
 divEl1.setAttribute('class', 'd-flex justify-content-center');
 questionSection.setAttribute('class', 'd-flex p-2 pt-5 flex-column');
 quizQuestion.setAttribute('class', 'p-2');
-quizOption1.setAttribute('class', 'p-2');
-quizOption2.setAttribute('class', 'p-2');
-quizOption3.setAttribute('class', 'p-2');
-quizOption4.setAttribute('class', 'p-2');
+quizOption1.setAttribute('class', 'p-2 btn btn-primary');
+quizOption2.setAttribute('class', 'p-2 btn btn-primary');
+quizOption3.setAttribute('class', 'p-2 btn btn-primary');
+quizOption4.setAttribute('class', 'p-2 btn btn-primary');
 
 //Score
 var score = 0;
-var timeLeft = 5;
+var timeLeft = 20;
+var questionCounter = 0;
+var questionPassed = false;
 
 //Timer Function
 function timer() {
-    var timerInterval = setInterval(function() {
+    var timerInterval = setInterval(function () {
         timeLeft--;
         timeView.textContent = "Time: " + timeLeft;
-        
-        if(timeLeft === 0) {
-            clearInterval(timerInterval);
-            alert('game over');
-          }
 
-    },1000)
+        if (timeLeft === 0) {
+            clearInterval(timerInterval);
+            alert('game');
+        }
+
+    }, 1000)
 };
 
 
@@ -61,71 +63,62 @@ function timer() {
 //question data bank
 var questionsArray = [
     {
-        question: "Which of the following is correct?",
+        question: "Which of the following is correct 1?",
         answers: [
             {
-                text: "Dog",
-                correct: false,
+                a: "Dog1",
             },
             {
-                text:
-                    "Cat",
-                correct: false,
+                b: "Cat1",
             },
             {
-                text: "Mouse",
-                correct: false,
+                c: "Mouse1",
             },
             {
-                text: "All of the above",
-                correct: true,
+                d: "All of the above1",
             },
-        ]
+        ],
+        correctAnswer: "d"
     },
+
     {
-        question: "Which of the following is correct?",
+        question: "Which of the following is correct 2?",
         answers: [
             {
-                text: "Dog",
-                correct: false,
+                a: "Dog2",
             },
             {
-                text:
-                    "Cat",
-                correct: false,
+                b: "Cat2",
             },
             {
-                text: "Mouse",
-                correct: false,
+                c: "Mouse2",
             },
             {
-                text: "All of the above",
-                correct: true,
+                d: "All of the above2",
             },
-        ]
+        ],
+        correctAnswer: "d"
     },
+
     {
-        question: "Which of the following is correct?",
+        question: "Which of the following is correct 3?",
         answers: [
             {
-                text: "Dog",
-                correct: false,
+                a: "Dog3",
             },
             {
-                text:
-                    "Cat",
-                correct: false,
+                b: "Cat3",
             },
             {
-                text: "Mouse",
-                correct: false,
+                c: "Mouse3",
             },
             {
-                text: "All of the above",
-                correct: true,
+                d: "All of the above3",
             },
-        ]
+        ],
+        correctAnswer: "d"
     },
+
 ]
 
 //clear page function
@@ -137,30 +130,105 @@ function clearPage() {
 }
 
 
+
+//console.log(questionsArray.length);
 //render quiz questions
-function quiz() {
+function renderQuizQuestion(i) {
 
-    quizQuestion.textContent = 'test';
-    quizOption1.textContent = 'test1';
-    quizOption2.textContent = 'test2';
-    quizOption3.textContent = 'test3';
-    quizOption4.textContent = 'test4';
+    //console.log(questionsArray[i]);
+    //console.log(i);
+    //console.log(questionsArray[i].correctAnswer);
 
+    quizQuestion.textContent = questionsArray[i].question;
+    quizOption1.textContent = questionsArray[i].answers[0].a;
+    quizOption2.textContent = questionsArray[i].answers[1].b;
+    quizOption3.textContent = questionsArray[i].answers[2].c;
+    quizOption4.textContent = questionsArray[i].answers[3].d;
+
+    //map answer
+    var answerToQuestion = questionsArray[i].correctAnswer;
+    //var selectionObjectKey = Object.keys(questionsArray[i].answers[0]).toString();
+
+    //console.log(questionsArray[i].answers[0]);
+
+    //get answer key as string
+    //console.log(Object.keys(questionsArray[i].answers[0]).toString());
+    //console.log("selection is " + selectionObjectKey);
+
+
+    console.log("answerToQuestion is: " + answerToQuestion);
+
+
+    //attach question to main section
     mainContentContainer.appendChild(divEl1);
+
+
+    quizOption1.addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log(questionsArray[i].answers[0].a);
+
+        var selectionObjectKey = Object.keys(questionsArray[i].answers[0]).toString();
+        console.log("you selected: " + selectionObjectKey);
+        console.log('correct answer is: ' + answerToQuestion);
+        if(selectionObjectKey === answerToQuestion) {
+            console.log("That is the correct answer.");
+            i++;
+            renderQuizQuestion(i);
+        }
+
+        //console.log(event);
+        //console.log(event.target.parentElement);
+        //alert('Option 1');
+    });
+
+    quizOption2.addEventListener('click', function () {
+        event.preventDefault();
+        console.log(questionsArray[i].answers[1].b);
+        var selectionObjectKey = Object.keys(questionsArray[i].answers[1]).toString();
+        console.log("you selected: " + selectionObjectKey);
+        console.log('correct answer is: ' + answerToQuestion);
+        if(selectionObjectKey === answerToQuestion) {
+            console.log("That is the correct answer.");
+            i++;
+            renderQuizQuestion(i);
+        }
+        //alert('Option 2');
+    });
+
+    quizOption3.addEventListener('click', function () {
+        event.preventDefault();
+        console.log(questionsArray[i].answers[2].c);
+        var selectionObjectKey = Object.keys(questionsArray[i].answers[2]).toString();
+        console.log("you selected: " + selectionObjectKey);
+        console.log('correct answer is: ' + answerToQuestion);
+        if(selectionObjectKey === answerToQuestion) {
+            console.log("That is the correct answer.");
+            i++;
+            renderQuizQuestion(i);
+        }
+        //alert('Option 3');
+    });
+
+    quizOption4.addEventListener('click', function () {
+        event.preventDefault();
+        console.log(questionsArray[i].answers[3].d);
+        var selectionObjectKey = Object.keys(questionsArray[i].answers[3]).toString();
+        console.log("you selected: " + selectionObjectKey);
+        console.log('correct answer is: ' + answerToQuestion);
+        if(selectionObjectKey === answerToQuestion) {
+            console.log("That is the correct answer.");
+            i++;
+            renderQuizQuestion(i);
+
+        }
+        //alert('Option 4');
+    });
 }
 
-
-//question bank array or objects
-
+//ask questions
 
 
-//main page
-// $('#start-button').on('click', function() {
-// clearPage();
-// alert('clear!');
-// });
 
-//quiz section
 
 
 //All done! Your final score is:  Enter initials
@@ -178,13 +246,37 @@ viewHighScoresButton.addEventListener('click', function () {
     alert('click on viewHighScoresButton');
 });
 
+// quizOption1.addEventListener('click', function () {
+//     console.log(questionsArray[0].answers[0].correct);
+//     alert('Option 1');
+// });
+
+
+
 timeView.addEventListener('click', function () {
     alert('click on timeView');
 });
 
 startButton.addEventListener('click', function () {
     clearPage();
-    quiz();
+
     timer();
+
+
+    if (questionPassed === false) {
+        var i = 0;
+        renderQuizQuestion(i);
+
+        //if correct answer move to next question
+
+    }
+
+
+
+
+
+
+
+
     //alert('click on startButton');
 });
