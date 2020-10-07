@@ -58,7 +58,7 @@ function renderQuestion(i) {
 
                 clearPage();
                 if (questionCounter < questionsArray.length) {
-                  renderQuestion(questionCounter);  
+                    renderQuestion(questionCounter);
                 } else {
                     //console.log("DONE");
                     finalTime = timeLeft;
@@ -94,7 +94,7 @@ function timer() {
 };
 
 //start button listener
-startButton.addEventListener('click', function() {
+startButton.addEventListener('click', function () {
     timer();
     renderQuestion(questionCounter);
 });
@@ -131,6 +131,30 @@ var quizCompletedfun = function quizCompleted() {
 
 }
 
-//quizCompleted();
 
 //render highscores page
+
+var renderHighscorePage = function () {
+    clearPage();
+    var highscoreTitle = document.createElement('h3');
+    highscoreTitle.textContent = "Highscores";
+
+    var ul = document.createElement('ul');
+    var li = document.createElement('li');
+    li.textContent = "a highscore name and score";
+
+    var backButton = document.createElement('button');
+    backButton.textContent = "Back to main page";
+    //need to make button work
+
+
+    mainContentContainer.appendChild(highscoreTitle);
+    ul.appendChild(li);
+    mainContentContainer.appendChild(ul);
+    mainContentContainer.appendChild(backButton);
+    
+    
+
+}
+
+renderHighscorePage();
