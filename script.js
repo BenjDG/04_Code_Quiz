@@ -1,7 +1,7 @@
 //DOM targets
 var mainContentContainer = document.querySelector('main');
 //var viewHighScoresButton = document.querySelector('#view-highscores');
-//var timeView = document.querySelector('#clock-timer');
+var timeView = document.querySelector('#clock-timer');
 
 //start button
 var startButton = document.createElement("button");
@@ -62,7 +62,10 @@ function renderQuestion(i) {
                 } else {
                     console.log("DONE");
                 }
+            } else {
+                timeLeft -= 5;
             }
+
         });
     };
 
@@ -70,7 +73,7 @@ function renderQuestion(i) {
     mainContentContainer.appendChild(h2);
 }
 
-
+var timeLeft = 30;
 //Timer Function
 function timer() {
     var timerInterval = setInterval(function () {
@@ -86,8 +89,10 @@ function timer() {
 
 //start button listener
 startButton.addEventListener('click', function() {
+    timer();
     renderQuestion(questionCounter);
 });
+
 
 // //clear page function
 function clearPage() {
