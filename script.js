@@ -51,9 +51,14 @@ function renderQuestion(i) {
         button.addEventListener('click', function (event) {
             if (event.target.textContent == questionsArray[i].correctAnswer) {
                 questionCounter++;
-                
+
                 clearPage();
-                renderQuestion(questionCounter);
+                if (questionCounter < questionsArray.length) {
+                  renderQuestion(questionCounter);  
+                } else {
+                    console.log("DONE");
+                }
+                
 
             }
             // console.log(event.target.textContent);
