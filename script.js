@@ -3,6 +3,8 @@ var mainContentContainer = document.querySelector('main');
 //var viewHighScoresButton = document.querySelector('#view-highscores');
 //var timeView = document.querySelector('#clock-timer');
 
+//this counter is used to increment through the array of questions
+var questionCounter = 0;
 
 //question data bank
 var questionsArray = [
@@ -45,15 +47,42 @@ function renderQuestion(i) {
         var button = document.createElement('button');
         button.textContent = arr[index];
         h2.appendChild(button);
+
+        button.addEventListener('click', function (event) {
+            if (event.target.textContent == questionsArray[i].correctAnswer) {
+                questionCounter++;
+                
+                clearPage();
+                renderQuestion(questionCounter);
+
+            }
+            // console.log(event.target.textContent);
+            // console.log(questionsArray[i].correctAnswer);
+        });
     };
 
     currentOption.forEach(makeButton);
-
     mainContentContainer.appendChild(h2);
-
 }
 
-renderQuestion(0);
+
+renderQuestion(questionCounter);
+
+
+// function quiz(i) {
+
+//     if (questionCounter < questionsArray.length) {
+//         renderQuestion(i); 
+//         console.log(questionsArray[i].correctAnswer);
+
+//     }
+// }
+
+// quiz(0);
+
+
+
+
 //renderQuestion(1);
 //renderQuestion(2);
 
@@ -82,9 +111,8 @@ renderQuestion(0);
 // };
 
 // //clear page function
-// function clearPage() {
-//     while (mainContentContainer.hasChildNodes()) {
-//         mainContentContainer.removeChild(mainContentContainer.firstChild);
-//     }
-
-// }
+function clearPage() {
+    while (mainContentContainer.hasChildNodes()) {
+        mainContentContainer.removeChild(mainContentContainer.firstChild);
+    }
+}
