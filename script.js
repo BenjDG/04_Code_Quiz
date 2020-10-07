@@ -1,7 +1,7 @@
 //DOM targets
 var mainContentContainer = document.querySelector('main');
-var viewHighScoresButton = document.querySelector('#view-highscores');
-var timeView = document.querySelector('#clock-timer');
+//var viewHighScoresButton = document.querySelector('#view-highscores');
+//var timeView = document.querySelector('#clock-timer');
 
 
 //question data bank
@@ -24,42 +24,45 @@ var questionsArray = [
 
 ]
 
-//start button
-var startButton = document.createElement("button");
-startButton.setAttribute('class', 'btn btn-primary');
-startButton.textContent = "Start";
-mainContentContainer.append(startButton);
+console.log(questionsArray.length);
 
-//quiz elements
-for (var i = 0; i < questionsArray.length; i++) {
-    var question = document.createElement('h2');
-    question.textContent = questionsArray[i].question;
-    mainContentContainer.append(question);
+// //start button
+// var startButton = document.createElement("button");
+// startButton.setAttribute('class', 'btn btn-primary');
+// startButton.textContent = "Start";
+// mainContentContainer.append(startButton);
 
-    var answerOption = document.createElement('button');
-    answerOption.setAttribute('class', 'btn btn-primary');
+//render question
+function renderQuestion(i) {
 
-    questionsArray[i].answers.forEach(function (item) {
-        console.log(item);
+    var currentQuestion = questionsArray[i].question;
+    var currentOption = questionsArray[i].answers;
 
-    });
+    var h2 = document.createElement('h2');
+    h2.textContent = currentQuestion;
 
+    function makeButton(button, index, arr) {
+        var button = document.createElement('button');
+        button.textContent = arr[index];
+        h2.appendChild(button);
+    };
 
-    answerOption.textContent = "button";
+    currentOption.forEach(makeButton);
 
+    mainContentContainer.appendChild(h2);
 
-    mainContentContainer.append(answerOption);
 }
 
-function handleClick(event) {
+renderQuestion(0);
+//renderQuestion(1);
+//renderQuestion(2);
 
-};
 
-startButton.addEventListener('click', function (event) {
-    console.log(event.target.parentElement);
-});
+// startButton.addEventListener('click', function (event) {
+//     console.log(event.target.parentElement);
+// });
 
-//quiz
+
 
 
 
