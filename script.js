@@ -61,9 +61,10 @@ function renderQuestion(i) {
                   renderQuestion(questionCounter);  
                 } else {
                     //console.log("DONE");
-                    var finalTime = timeLeft;
+                    finalTime = timeLeft;
                     //console.log('final time: ' + finalTime);
                     clearInterval(timerInterval);
+                    quizCompletedfun();
                 }
             } else {
                 timeLeft -= 5;
@@ -78,6 +79,7 @@ function renderQuestion(i) {
 
 var timeLeft = 30;
 var timerInterval;
+var finalTime;
 //Timer Function
 function timer() {
     timerInterval = setInterval(function () {
@@ -107,12 +109,12 @@ function clearPage() {
 
 
 //render quiz completed
-function quizCompleted() {
+var quizCompletedfun = function quizCompleted() {
     clearPage();
 
     var form = document.createElement('form');
     var h3 = document.createElement('h3');
-    h3.textContent = "Your final score is:";
+    h3.textContent = "Your final score is: " + finalTime;
 
     var p = document.createElement('p');
     p.textContent = "Enter your name to add you score to the highscores list."
