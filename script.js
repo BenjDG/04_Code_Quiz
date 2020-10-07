@@ -61,6 +61,9 @@ function renderQuestion(i) {
                   renderQuestion(questionCounter);  
                 } else {
                     console.log("DONE");
+                    var finalTime = timeLeft;
+                    console.log('final time: ' + finalTime);
+                    timer().clearInterval(timerInterval);
                 }
             } else {
                 timeLeft -= 5;
@@ -100,3 +103,31 @@ function clearPage() {
         mainContentContainer.removeChild(mainContentContainer.firstChild);
     }
 }
+
+
+//render quiz completed
+function quizCompleted() {
+    clearPage();
+
+    var form = document.createElement('form');
+    var h3 = document.createElement('h3');
+    h3.textContent = "Your final score is:";
+
+    var p = document.createElement('p');
+    p.textContent = "Enter your name to add you score to the highscores list."
+
+    var input = document.createElement('input');
+    var submit = document.createElement('button');
+    submit.textContent = 'submit';
+
+    mainContentContainer.appendChild(form);
+    form.appendChild(h3);
+    form.appendChild(p);
+    form.appendChild(input);
+    form.appendChild(submit);
+
+}
+
+//quizCompleted();
+
+//render highscores page
