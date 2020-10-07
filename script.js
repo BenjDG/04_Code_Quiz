@@ -60,10 +60,10 @@ function renderQuestion(i) {
                 if (questionCounter < questionsArray.length) {
                   renderQuestion(questionCounter);  
                 } else {
-                    console.log("DONE");
+                    //console.log("DONE");
                     var finalTime = timeLeft;
-                    console.log('final time: ' + finalTime);
-                    timer().clearInterval(timerInterval);
+                    //console.log('final time: ' + finalTime);
+                    clearInterval(timerInterval);
                 }
             } else {
                 timeLeft -= 5;
@@ -77,9 +77,10 @@ function renderQuestion(i) {
 }
 
 var timeLeft = 30;
+var timerInterval;
 //Timer Function
 function timer() {
-    var timerInterval = setInterval(function () {
+    timerInterval = setInterval(function () {
         timeLeft--;
         timeView.textContent = "Time: " + timeLeft;
 
