@@ -3,6 +3,14 @@ var mainContentContainer = document.querySelector('main');
 //var viewHighScoresButton = document.querySelector('#view-highscores');
 //var timeView = document.querySelector('#clock-timer');
 
+//start button
+var startButton = document.createElement("button");
+startButton.setAttribute('class', 'btn btn-primary');
+startButton.textContent = "Start";
+mainContentContainer.append(startButton);
+
+
+
 //this counter is used to increment through the array of questions
 var questionCounter = 0;
 
@@ -28,11 +36,7 @@ var questionsArray = [
 
 console.log(questionsArray.length);
 
-// //start button
-// var startButton = document.createElement("button");
-// startButton.setAttribute('class', 'btn btn-primary');
-// startButton.textContent = "Start";
-// mainContentContainer.append(startButton);
+
 
 //render question
 function renderQuestion(i) {
@@ -58,11 +62,7 @@ function renderQuestion(i) {
                 } else {
                     console.log("DONE");
                 }
-                
-
             }
-            // console.log(event.target.textContent);
-            // console.log(questionsArray[i].correctAnswer);
         });
     };
 
@@ -71,49 +71,23 @@ function renderQuestion(i) {
 }
 
 
-renderQuestion(questionCounter);
+//Timer Function
+function timer() {
+    var timerInterval = setInterval(function () {
+        timeLeft--;
+        timeView.textContent = "Time: " + timeLeft;
 
+        if (timeLeft === 0) {
+            clearInterval(timerInterval);
+            alert('game');
+        }
+    }, 1000)
+};
 
-// function quiz(i) {
-
-//     if (questionCounter < questionsArray.length) {
-//         renderQuestion(i); 
-//         console.log(questionsArray[i].correctAnswer);
-
-//     }
-// }
-
-// quiz(0);
-
-
-
-
-//renderQuestion(1);
-//renderQuestion(2);
-
-
-// startButton.addEventListener('click', function (event) {
-//     console.log(event.target.parentElement);
-// });
-
-
-
-
-
-
-// //Timer Function
-// function timer() {
-//     var timerInterval = setInterval(function () {
-//         timeLeft--;
-//         timeView.textContent = "Time: " + timeLeft;
-
-//         if (timeLeft === 0) {
-//             clearInterval(timerInterval);
-//             alert('game');
-//         }
-
-//     }, 1000)
-// };
+//start button listener
+startButton.addEventListener('click', function() {
+    renderQuestion(questionCounter);
+});
 
 // //clear page function
 function clearPage() {
