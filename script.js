@@ -2,6 +2,8 @@
 var mainContentContainer = document.querySelector('main');
 var viewHighScoresButton = document.querySelector('#view-highscores');
 var timeView = document.querySelector('#clock-timer');
+var notif = document.querySelector('#right-wrong-notification');
+
 
 
 var highscores = [];
@@ -70,11 +72,13 @@ function renderQuestion(i) {
 
         button.addEventListener('click', function (event) {
             if (event.target.textContent == questionsArray[i].correctAnswer) {
+                correctAnswerMessage();
                 questionCounter++;
 
                 clearPage();
                 if (questionCounter < questionsArray.length) {
                     renderQuestion(questionCounter);
+
                 } else {
                     finalTime = timeLeft;
                     clearInterval(timerInterval);
@@ -82,14 +86,52 @@ function renderQuestion(i) {
                 }
             } else {
                 timeLeft -= 5;
-            }
+                wrongAnswerMessage();
+                clearPage();
+                if (questionCounter < questionsArray.length) {
+                    renderQuestion(questionCounter);
 
+                } else {
+                    finalTime = timeLeft;
+                    clearInterval(timerInterval);
+                    quizCompletedfun();
+                }
+            }
         });
     };
 
     currentOption.forEach(makeButton);
     mainContentContainer.appendChild(h2);
 }
+
+function correctAnswerMessage() {
+    
+        var par = document.createElement('p');
+        par.textContent = "Correct!";
+        notif.appendChild(par);
+        setTimeout(function() {
+            while (notif.hasChildNodes()) {
+                notif.removeChild(notif.firstChild);
+            }
+        },3000);  
+}
+//correctAnswerMessage();
+
+
+
+function wrongAnswerMessage() {
+    
+    var par = document.createElement('p');
+    par.textContent = "Wrong!";
+    notif.appendChild(par);
+    setTimeout(function() {
+        while (notif.hasChildNodes()) {
+            notif.removeChild(notif.firstChild);
+        }
+    },3000);
+}
+
+//wrongAnswerMessage();
 
 var timeLeft = 30;
 var timerInterval;
@@ -100,9 +142,10 @@ function timer() {
         timeLeft--;
         timeView.textContent = "Time: " + timeLeft;
 
-        if (timeLeft === 0) {
+        if (timeLeft <= 0) {
             clearInterval(timerInterval);
-            alert('game');
+            alert('Game Over');
+            window.location.href = './index.html'
         }
     }, 1000)
 };
@@ -113,6 +156,7 @@ startButton.addEventListener('click', function () {
     clearPage();
     renderQuestion(questionCounter);
 });
+
 
 
 // //clear page function
