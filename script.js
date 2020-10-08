@@ -1,13 +1,24 @@
 //DOM targets
 var mainContentContainer = document.querySelector('main');
-//var viewHighScoresButton = document.querySelector('#view-highscores');
+var viewHighScoresButton = document.querySelector('#view-highscores');
 var timeView = document.querySelector('#clock-timer');
 
-//start button
+//render main page
+var mainTitle = document.createElement('h1');
+mainTitle.textContent = "Javascript Quiz";
+
+
+var paragraphEl = document.createElement('p');
+paragraphEl.textContent = "You have 30 seconds to complete the quiz.  Each wrong answer reduces your time by 5 seconds.  Your score will equal the number of seconds left at the end."
+
+
 var startButton = document.createElement("button");
 startButton.setAttribute('class', 'btn btn-primary');
 startButton.textContent = "Start";
-mainContentContainer.append(startButton);
+
+mainContentContainer.appendChild(mainTitle);
+mainContentContainer.appendChild(paragraphEl);
+mainContentContainer.appendChild(startButton);
 
 
 
@@ -96,6 +107,7 @@ function timer() {
 //start button listener
 startButton.addEventListener('click', function () {
     timer();
+    clearPage();
     renderQuestion(questionCounter);
 });
 
@@ -145,7 +157,11 @@ var renderHighscorePage = function () {
 
     var backButton = document.createElement('button');
     backButton.textContent = "Back to main page";
+    backButton.setAttribute('onclick','location.href="./index.html"');
     //need to make button work
+    // backButton.addEventListener('click', function() {
+    //     location.reload();
+    // });
 
 
     mainContentContainer.appendChild(highscoreTitle);
@@ -157,4 +173,8 @@ var renderHighscorePage = function () {
 
 }
 
-renderHighscorePage();
+//renderHighscorePage();
+
+viewHighScoresButton.addEventListener('click', function() {
+    renderHighscorePage();
+});
