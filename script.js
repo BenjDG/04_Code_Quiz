@@ -52,10 +52,6 @@ var questionsArray = [
     },
 ]
 
-//console.log(questionsArray.length);
-
-
-
 //render question
 function renderQuestion(i) {
 
@@ -200,14 +196,9 @@ var quizCompletedfun = function quizCompleted() {
     //submit listener
     formInput.addEventListener("submit", function (event) {
         event.preventDefault();
-        //console.log(event);
-        //console.log(event.target.elements.name.value);
 
         var usersName = event.target.elements.name.value;
         var usersScore = finalTime;
-
-        console.log(usersName);
-        console.log(usersScore);
 
         if (usersName === "") {
             return;
@@ -216,9 +207,8 @@ var quizCompletedfun = function quizCompleted() {
         highscores.push(usersScore);
         highscoresNames.push(usersName);
 
-
-
         storeScore();
+        
         //renderHighscorePage();
         renderHighscorePage();
     });
@@ -251,7 +241,6 @@ function storeScore() {
 
 
 //render highscores page
-
 var renderHighscorePage = function () {
     clearPage();
     sortLocalStorage();
@@ -281,18 +270,10 @@ var renderHighscorePage = function () {
 }
 
 //renderHighscorePage();
-
 viewHighScoresButton.addEventListener('click', function () {
     renderHighscorePage();
 });
 
-
-
-//extra stuff for testing
-
-//quizCompletedfun();
-//console.log(highscoresNames);
-//console.log(highscores);
 
 //sort local storage
 function sortLocalStorage() {
@@ -316,7 +297,3 @@ function sortLocalStorage() {
 
     storeScore();
 }
-
-//sortLocalStorage();
-
-//still need to handle when timer gets to zero
