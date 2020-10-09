@@ -50,11 +50,15 @@ function renderQuestion(i) {
     var currentQuestion = questionsArray[i].question;
     var currentOption = questionsArray[i].answers;
     var h2 = document.createElement('h2');
+    var br = document.createElement('br');
     h2.textContent = currentQuestion;
+    h2.setAttribute('class', 'm-2');
+    h2.appendChild(br);
 
     function makeButton(button, index, arr) {
         var button = document.createElement('button');
         button.textContent = arr[index];
+        button.setAttribute('class', 'btn btn-primary m-4 mt-2')
         h2.appendChild(button);
         button.addEventListener('click', function (event) {
             if (event.target.textContent == questionsArray[i].correctAnswer) {
@@ -83,7 +87,6 @@ function renderQuestion(i) {
             }
         });
     };
-
     currentOption.forEach(makeButton);
     mainContentContainer.appendChild(h2);
 }
@@ -101,8 +104,6 @@ function correctAnswerMessage() {
         },3000);  
 }
 
-
-
 //wrongAnswerMessage
 function wrongAnswerMessage() {
     var par = document.createElement('p');
@@ -115,8 +116,7 @@ function wrongAnswerMessage() {
     },3000);
 }
 
-
-var timeLeft = 30;
+var timeLeft = 3000;
 var timerInterval;
 var finalTime;
 //Timer Function
@@ -171,35 +171,28 @@ var quizCompletedfun = function quizCompleted() {
     var submit = document.createElement('button');
     submit.textContent = 'submit';
 
-
     mainContentContainer.appendChild(form);
     form.appendChild(h3);
     form.appendChild(p);
     form.appendChild(input);
     form.appendChild(submit);
-
     formInput = document.querySelector('#score-form');
 
     //submit listener
     formInput.addEventListener("submit", function (event) {
         event.preventDefault();
-
         var usersName = event.target.elements.name.value;
         var usersScore = finalTime;
-
         if (usersName === "") {
             return;
         }
-
         highscores.push(usersScore);
         highscoresNames.push(usersName);
-
         storeScore();
         
         //renderHighscorePage();
         renderHighscorePage();
     });
-
 }
 
 //load data from local storage when page loads
@@ -215,23 +208,18 @@ function init() {
     }
 }
 
-
 //store score to local storage
-
 function storeScore() {
     localStorage.setItem('scores', JSON.stringify(highscores));
     localStorage.setItem('names', JSON.stringify(highscoresNames));
     //renderHighscorePage();
 }
 
-
-
-
 //render highscores page
 var renderHighscorePage = function () {
     clearPage();
     sortLocalStorage();
-    var highscoreTitle = document.createElement('h3');
+    var highscoreTitle = document.createElement('h1');
     highscoreTitle.textContent = "Highscores";
     highscoreTitle.setAttribute('class', 'm-4');
 
@@ -247,13 +235,23 @@ var renderHighscorePage = function () {
 
 
     var backButton = document.createElement('button');
+    var clearScores = document.createElement('button');
     backButton.textContent = "Back to main page";
+    clearScores.textContent = "Clear Scores";
     backButton.setAttribute('onclick', 'location.href="./index.html"');
-    backButton.setAttribute('class', 'btn btn-primary m-4')
+    backButton.setAttribute('class', 'btn btn-primary m-4');
+    clearScores.setAttribute('class', 'btn btn-primary m-4');
     mainContentContainer.appendChild(highscoreTitle);
     mainContentContainer.appendChild(ul);
     mainContentContainer.appendChild(backButton);
-
+    mainContentContainer.appendChild(clearScores);
+    
+    clearScores.addEventListener('click', function () {
+        highscores = [];
+        highscoresNames = [];
+        localStorage.clear();
+        renderHighscorePage();
+    });
 
 }
 
@@ -261,7 +259,6 @@ var renderHighscorePage = function () {
 viewHighScoresButton.addEventListener('click', function () {
     renderHighscorePage();
 });
-
 
 //sort local storage
 function sortLocalStorage() {
