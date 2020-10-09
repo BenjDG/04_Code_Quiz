@@ -21,6 +21,7 @@ startButton.textContent = "Start";
 mainContentContainer.appendChild(mainTitle);
 mainContentContainer.appendChild(paragraphEl);
 mainContentContainer.appendChild(startButton);
+mainContentContainer.setAttribute('class', 'col-10 col-md-6 align-self-center text-center')
 
 //this counter is used to increment through the array of questions
 var questionCounter = 0;
@@ -232,12 +233,14 @@ var renderHighscorePage = function () {
     sortLocalStorage();
     var highscoreTitle = document.createElement('h3');
     highscoreTitle.textContent = "Highscores";
+    highscoreTitle.setAttribute('class', 'm-4');
 
     var ul = document.createElement('ul');
 
     for (var z = 0; z < highscores.length; z++) {
         var li = document.createElement('li');
         li.textContent = highscoresNames[z] + " " + highscores[z];
+        li.setAttribute('class', 'm-1 text-center')
         ul.appendChild(li);
 
     }
@@ -246,9 +249,8 @@ var renderHighscorePage = function () {
     var backButton = document.createElement('button');
     backButton.textContent = "Back to main page";
     backButton.setAttribute('onclick', 'location.href="./index.html"');
-
+    backButton.setAttribute('class', 'btn btn-primary m-4')
     mainContentContainer.appendChild(highscoreTitle);
-
     mainContentContainer.appendChild(ul);
     mainContentContainer.appendChild(backButton);
 
