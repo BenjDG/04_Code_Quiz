@@ -4,8 +4,7 @@ var viewHighScoresButton = document.querySelector('#view-highscores');
 var timeView = document.querySelector('#clock-timer');
 var notif = document.querySelector('#right-wrong-notification');
 
-
-
+//arrays
 var highscores = [];
 var highscoresNames = [];
 
@@ -14,21 +13,14 @@ init();
 //render main page
 var mainTitle = document.createElement('h1');
 mainTitle.textContent = "Javascript Quiz";
-
-
 var paragraphEl = document.createElement('p');
 paragraphEl.textContent = "You have 30 seconds to complete the quiz.  Each wrong answer reduces your time by 5 seconds.  Your score will equal the number of seconds left at the end."
-
-
 var startButton = document.createElement("button");
 startButton.setAttribute('class', 'btn btn-primary');
 startButton.textContent = "Start";
-
 mainContentContainer.appendChild(mainTitle);
 mainContentContainer.appendChild(paragraphEl);
 mainContentContainer.appendChild(startButton);
-
-
 
 //this counter is used to increment through the array of questions
 var questionCounter = 0;
@@ -54,10 +46,8 @@ var questionsArray = [
 
 //render question
 function renderQuestion(i) {
-
     var currentQuestion = questionsArray[i].question;
     var currentOption = questionsArray[i].answers;
-
     var h2 = document.createElement('h2');
     h2.textContent = currentQuestion;
 
@@ -65,12 +55,10 @@ function renderQuestion(i) {
         var button = document.createElement('button');
         button.textContent = arr[index];
         h2.appendChild(button);
-
         button.addEventListener('click', function (event) {
             if (event.target.textContent == questionsArray[i].correctAnswer) {
                 correctAnswerMessage();
                 questionCounter++;
-
                 clearPage();
                 if (questionCounter < questionsArray.length) {
                     renderQuestion(questionCounter);
@@ -86,7 +74,6 @@ function renderQuestion(i) {
                 clearPage();
                 if (questionCounter < questionsArray.length) {
                     renderQuestion(questionCounter);
-
                 } else {
                     finalTime = timeLeft;
                     clearInterval(timerInterval);
@@ -100,6 +87,7 @@ function renderQuestion(i) {
     mainContentContainer.appendChild(h2);
 }
 
+//correctAnswerMessage();
 function correctAnswerMessage() {
     
         var par = document.createElement('p');
@@ -111,12 +99,11 @@ function correctAnswerMessage() {
             }
         },3000);  
 }
-//correctAnswerMessage();
 
 
 
+//wrongAnswerMessage
 function wrongAnswerMessage() {
-    
     var par = document.createElement('p');
     par.textContent = "Wrong!";
     notif.appendChild(par);
@@ -127,7 +114,6 @@ function wrongAnswerMessage() {
     },3000);
 }
 
-//wrongAnswerMessage();
 
 var timeLeft = 30;
 var timerInterval;
