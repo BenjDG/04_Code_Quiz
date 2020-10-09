@@ -116,7 +116,7 @@ function wrongAnswerMessage() {
     },3000);
 }
 
-var timeLeft = 3000;
+var timeLeft = 30;
 var timerInterval;
 var finalTime;
 //Timer Function
@@ -157,6 +157,7 @@ var quizCompletedfun = function quizCompleted() {
     var form = document.createElement('form');
     form.setAttribute('id', "score-form");
     form.setAttribute('method', 'POST');
+    form.setAttribute('class', 'form-group');
 
     var h3 = document.createElement('h3');
     h3.textContent = "Your final score is: " + finalTime;
@@ -167,9 +168,11 @@ var quizCompletedfun = function quizCompleted() {
     var input = document.createElement('input');
     input.name = "name";
     input.value = "";
+    input.setAttribute('class', 'form-control');
 
     var submit = document.createElement('button');
     submit.textContent = 'submit';
+    submit.setAttribute('class', 'btn btn-primary mb-1')
 
     mainContentContainer.appendChild(form);
     form.appendChild(h3);
